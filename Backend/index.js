@@ -1,5 +1,5 @@
 const express=require("express");
-const { createTodo } = require("./types");
+const { createTodo, updateTodo } = require("./types");
 const { todo } = require("./db");
 const cors=require("cors");
 const app=express();
@@ -50,7 +50,7 @@ app.put("/completed",async function(req,res){
         })
         return;
     }
-    await todo.update({
+    await todo.updateOne({
         _id:req.body.id
     },{
         completed: true
